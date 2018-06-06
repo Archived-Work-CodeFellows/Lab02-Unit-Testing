@@ -32,7 +32,7 @@ namespace Lab_02_ATM
                     break;
                 case "2":
                     Console.Clear();
-                    Console.WriteLine("withdraw");
+                    UserWithdraw();
                     break;
                 case "3":
                     Console.Clear();
@@ -65,6 +65,23 @@ namespace Lab_02_ATM
         static void UserWithdraw()
         {
             Console.Clear();
+            int input = 0;
+            try
+            {
+                Console.WriteLine("You've select to withdraw monies");
+                Console.WriteLine("How much would you like to withdraw?");
+                input = Int32.Parse(Console.ReadLine());
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine("I'm sorry I don't quite understand that");
+                Console.WriteLine(ex.Message);
+                Console.ReadLine();
+            }
+            finally
+            {
+                balance = withdrawSelect(input, balance);
+            }
         }
 
         public static decimal withdrawSelect(decimal amount, decimal balance)
@@ -73,8 +90,13 @@ namespace Lab_02_ATM
             {
                 balance = balance - amount;
                 Console.WriteLine($"Your new balance is: {balance}");
+                Console.ReadLine();
             }
-            else Console.WriteLine("I'm sorry, you do not have enough monies for that");
+            else
+            {
+                Console.WriteLine("I'm sorry, you do not have enough monies for that");
+                Console.ReadLine();
+            }
             return balance;
         }
     }
