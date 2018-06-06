@@ -28,7 +28,7 @@ namespace Lab_02_ATM
             {
                 case "1":
                     Console.Clear();
-                    Console.WriteLine("view");
+                    viewBalance();
                     break;
                 case "2":
                     Console.Clear();
@@ -51,8 +51,6 @@ namespace Lab_02_ATM
             Console.Clear();
             Console.WriteLine("Welcome to the Monies Bank filled with memes and Dreams");
             Console.WriteLine("Please make a selection!");
-            Console.WriteLine(" ");
-            Console.WriteLine($"Your current available balance: {balance}");
             Console.WriteLine(" ");
             Console.WriteLine("1) View your current available balance");
             Console.WriteLine("2) Withdraw money from your account");
@@ -84,6 +82,16 @@ namespace Lab_02_ATM
             }
         }
 
+        static void viewBalance()
+        {
+            Console.WriteLine("You've selected to view your current balance");
+            Console.WriteLine(" ");
+            Console.WriteLine($"Your current available balance: {balance}");
+            Console.ReadLine();
+        }
+
+        //*** This section is for all the algorithms that are tested via unit
+        //    tests
         public static decimal withdrawSelect(decimal amount, decimal balance)
         {
             if (amount <= balance)
