@@ -36,7 +36,14 @@ namespace Lab_02_ATM
                     break;
                 case "3":
                     Console.Clear();
-                    Console.WriteLine("deposit");
+                    try
+                    {
+                        UserDeposit();
+                    } catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        Console.ReadLine();
+                    }
                     break;
                 default:
 
@@ -58,6 +65,14 @@ namespace Lab_02_ATM
             Console.WriteLine("4) exit application");
             string input = Console.ReadLine();
             return input;
+        }
+
+        static void ViewBalance()
+        {
+            Console.WriteLine("You've selected to view your current balance");
+            Console.WriteLine(" ");
+            Console.WriteLine($"Your current available balance: {balance}");
+            Console.ReadLine();
         }
 
         static void UserWithdraw()
@@ -82,12 +97,25 @@ namespace Lab_02_ATM
             }
         }
 
-        static void ViewBalance()
+        static void UserDeposit()
         {
-            Console.WriteLine("You've selected to view your current balance");
-            Console.WriteLine(" ");
-            Console.WriteLine($"Your current available balance: {balance}");
-            Console.ReadLine();
+            Console.Clear();
+            int input = 0;
+
+            try
+            {
+                Console.WriteLine("You've selected to add some monies!");
+                Console.WriteLine("How much would you like to deposit?");
+                input = Int32.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                throw;
+            }
+            finally
+            {
+                balance = DepositSelect(input, balance);
+            }
         }
 
         //*** This section is for all the algorithms that are tested via unit
@@ -108,7 +136,7 @@ namespace Lab_02_ATM
         
         public static decimal DepositSelect(decimal amount, decimal balance)
         {
-            if(amount <= 0)
+            if(amount < 0)
             {
                 Console.WriteLine("I can't deposit that. I'm sorry");
 
