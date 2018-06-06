@@ -5,7 +5,7 @@ namespace Lab_02_ATM
 
     public class Program
     {
-        public static int balance = 2500;
+        public static decimal balance = 2500;
 
         static void Main(string[] args)
         {
@@ -26,15 +26,15 @@ namespace Lab_02_ATM
 
             switch (UserSelection())
             {
-                case 1:
+                case "1":
                     Console.Clear();
                     Console.WriteLine("view");
                     break;
-                case 2:
+                case "2":
                     Console.Clear();
-                    Console.WriteLine("withdraw");
+                    UserWithdraw();
                     break;
-                case 3:
+                case "3":
                     Console.Clear();
                     Console.WriteLine("deposit");
                     break;
@@ -43,22 +43,61 @@ namespace Lab_02_ATM
                     isRunning = false;
                     break;
             }
-            Console.ReadLine();
             return isRunning;
         }
 
-        static int UserSelection()
+        static string UserSelection()
         {
             Console.Clear();
             Console.WriteLine("Welcome to the Monies Bank filled with memes and Dreams");
             Console.WriteLine("Please make a selection!");
             Console.WriteLine(" ");
+            Console.WriteLine($"Your current available balance: {balance}");
+            Console.WriteLine(" ");
             Console.WriteLine("1) View your current available balance");
             Console.WriteLine("2) Withdraw money from your account");
             Console.WriteLine("3) Add money to your account");
             Console.WriteLine("4) exit application");
-            int input = Int32.Parse(Console.ReadLine());
+            string input = Console.ReadLine();
             return input;
+        }
+
+        static void UserWithdraw()
+        {
+            Console.Clear();
+            int input = 0;
+            try
+            {
+                Console.WriteLine("You've select to withdraw monies");
+                Console.WriteLine("How much would you like to withdraw?");
+                input = Int32.Parse(Console.ReadLine());
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine("I'm sorry I don't quite understand that");
+                Console.WriteLine(ex.Message);
+                Console.ReadLine();
+            }
+            finally
+            {
+                balance = withdrawSelect(input, balance);
+            }
+        }
+
+        public static decimal withdrawSelect(decimal amount, decimal balance)
+        {
+            if (amount <= balance)
+            {
+                balance = balance - amount;
+                Console.WriteLine($"Your new balance is: {balance}");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("I'm sorry, you do not have enough monies for that");
+                Console.ReadLine();
+            }
+            return balance;
         }
     }
 }
