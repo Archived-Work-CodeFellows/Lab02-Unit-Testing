@@ -108,7 +108,12 @@ namespace Lab_02_ATM
         
         public static decimal DepositSelect(decimal amount, decimal balance)
         {
-            balance = balance + amount;
+            if(amount <= 0)
+            {
+                Console.WriteLine("I can't deposit that. I'm sorry");
+
+            } else balance = balance + amount;
+
             return balance;
         }
     }
