@@ -28,7 +28,7 @@ namespace Lab_02_ATM
             {
                 case "1":
                     Console.Clear();
-                    viewBalance();
+                    ViewBalance();
                     break;
                 case "2":
                     Console.Clear();
@@ -78,11 +78,11 @@ namespace Lab_02_ATM
             }
             finally
             {
-                balance = withdrawSelect(input, balance);
+                balance = WithdrawSelect(input, balance);
             }
         }
 
-        static void viewBalance()
+        static void ViewBalance()
         {
             Console.WriteLine("You've selected to view your current balance");
             Console.WriteLine(" ");
@@ -92,19 +92,23 @@ namespace Lab_02_ATM
 
         //*** This section is for all the algorithms that are tested via unit
         //    tests
-        public static decimal withdrawSelect(decimal amount, decimal balance)
+        public static decimal WithdrawSelect(decimal amount, decimal balance)
         {
             if (amount <= balance)
             {
                 balance = balance - amount;
                 Console.WriteLine($"Your new balance is: {balance}");
-                Console.ReadLine();
             }
             else
             {
                 Console.WriteLine("I'm sorry, you do not have enough monies for that");
-                Console.ReadLine();
             }
+            return balance;
+        }
+        
+        public static decimal DepositSelect(decimal amount, decimal balance)
+        {
+            balance = balance + amount;
             return balance;
         }
     }

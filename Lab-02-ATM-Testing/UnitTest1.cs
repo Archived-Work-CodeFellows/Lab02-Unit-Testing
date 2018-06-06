@@ -7,15 +7,15 @@ namespace Lab_02_ATM_Testing
     public class UnitTest1
     {
         [Fact]
-        public void withdraw1()
+        public void Withdraw1()
         {
-            Assert.Equal(500, Program.withdrawSelect(2000, 2500));
+            Assert.Equal(500, Program.WithdrawSelect(2000, 2500));
         }
 
         [Fact]
-        public void withdrawOver()
+        public void WithdrawOver()
         {
-            Assert.Equal(2500, Program.withdrawSelect(3000 , 2500));
+            Assert.Equal(2500, Program.WithdrawSelect(3000 , 2500));
         }
 
         [Theory]
@@ -23,9 +23,25 @@ namespace Lab_02_ATM_Testing
         [InlineData(10, 2500, 2490)]
         [InlineData(100, 2500, 2400)]
         [InlineData(1250, 2500, 1250)]
-        public void withdrawals(decimal amount, decimal balance, decimal expected)
+        public void Withdrawals(decimal amount, decimal balance, decimal expected)
         {
-            Assert.Equal(expected, Program.withdrawSelect(amount, balance));
+            Assert.Equal(expected, Program.WithdrawSelect(amount, balance));
+        }
+        
+        [Fact]
+        public void Deposit1()
+        {
+            Assert.Equal(4500, Program.DepositSelect(2000, 2500));
+        }
+
+        [Theory]
+        [InlineData(10, 2500, 2510)]
+        [InlineData(200, 2500, 2700)]
+        [InlineData(1000, 2500, 3500)]
+        [InlineData(10000, 2500, 12500)]
+        public void Deposits(decimal amount, decimal balance, decimal expected)
+        {
+            Assert.Equal(expected, Program.DepositSelect(amount, balance));
         }
     }
 }
