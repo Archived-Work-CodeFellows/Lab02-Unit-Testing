@@ -17,9 +17,11 @@ namespace Lab_02_ATM
 
             } while (isRunning);
         }
-
-        //This houses a switch statment to direct the user
-        //based on their selections on the screen.
+        /// <summary>
+        /// This houses the main UI interaction and calls
+        /// the appropriate methods based on user input
+        /// </summary>
+        /// <returns>a boolean to determine if the app continues or not</returns>
         static bool AppMenu()
         {
             bool isRunning = true;
@@ -52,7 +54,11 @@ namespace Lab_02_ATM
             }
             return isRunning;
         }
-
+        /// <summary>
+        /// This houses the text for the main menu of the
+        /// application
+        /// </summary>
+        /// <returns>user selection</returns>
         static string UserSelection()
         {
             Console.Clear();
@@ -66,7 +72,10 @@ namespace Lab_02_ATM
             string input = Console.ReadLine();
             return input;
         }
-
+        /// <summary>
+        /// This is shows the user balance. For this application
+        /// the starting balance is 2500
+        /// </summary>
         static void ViewBalance()
         {
             Console.WriteLine("You've selected to view your current balance");
@@ -74,7 +83,11 @@ namespace Lab_02_ATM
             Console.WriteLine($"Your current available balance: {balance}");
             Console.ReadLine();
         }
-
+        /// <summary>
+        /// This method houses the interaction for the WithdrawSelect method
+        /// and implements a try-catch-finally block to ensure
+        /// valid user input
+        /// </summary>
         static void UserWithdraw()
         {
             Console.Clear();
@@ -96,7 +109,11 @@ namespace Lab_02_ATM
                 balance = WithdrawSelect(input, balance);
             }
         }
-
+        /// <summary>
+        /// This method houses the interaction for the DepositSelect method
+        /// and implements a try-catch-finally block to ensure
+        /// valid user input
+        /// </summary>
         static void UserDeposit()
         {
             Console.Clear();
@@ -117,9 +134,13 @@ namespace Lab_02_ATM
                 balance = DepositSelect(input, balance);
             }
         }
-
-        //*** This section is for all the algorithms that are tested via unit
-        //    tests
+        /// <summary>
+        /// This is the algorithm that is for if the user selects to withdraw
+        /// from their account. User cannot withdraw more than what is available
+        /// </summary>
+        /// <param name="amount">deisred amount to withdraw</param>
+        /// <param name="balance">current balance</param>
+        /// <returns>the new balance</returns>
         public static decimal WithdrawSelect(decimal amount, decimal balance)
         {
             if (amount <= balance)
@@ -133,7 +154,13 @@ namespace Lab_02_ATM
             }
             return balance;
         }
-        
+        /// <summary>
+        /// This is the algorithm that is for if the user selects to deposit money
+        /// to their account. User cannot deposit negative values
+        /// </summary>
+        /// <param name="amount">deisred amount to withdraw</param>
+        /// <param name="balance">current balance</param>
+        /// <returns>the new balance</returns>
         public static decimal DepositSelect(decimal amount, decimal balance)
         {
             if(amount < 0)
