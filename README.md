@@ -1,4 +1,4 @@
-# lab-02-ATM
+# Lab-02-ATM
 
 This is an ATM built in C# using the Visual Studio IDE and Test Driven Development philosophy. This is to solidify working with C# as a language and getting familiar with the environment. 
 
