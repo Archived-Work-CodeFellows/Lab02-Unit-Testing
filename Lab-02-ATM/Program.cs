@@ -143,7 +143,7 @@ namespace Lab_02_ATM
         /// <returns>the new balance</returns>
         public static decimal WithdrawSelect(decimal amount, decimal balance)
         {
-            if (amount <= balance)
+            if (amount <= balance && amount >= 0)
             {
                 balance = balance - amount;
                 Console.WriteLine($"Your new balance is: {balance}");
